@@ -13,12 +13,14 @@ $(document).keypress(function () {
 });
 
 $(".btn").click(function () {
-    var userChosenColour = $(this).attr("id");
-    userClickedPattern.push(userChosenColour);
-    // console.log(userClickedPattern);
-    playSound(userChosenColour);
-    animatePress(userChosenColour);
-    checkAnswer(userClickedPattern.length - 1);
+    if (started) {
+        var userChosenColour = $(this).attr("id");
+        userClickedPattern.push(userChosenColour);
+        // console.log(userClickedPattern);
+        playSound(userChosenColour);
+        animatePress(userChosenColour);
+        checkAnswer(userClickedPattern.length - 1);
+    }
 });
 
 function nextSequence() {
@@ -61,7 +63,7 @@ function checkAnswer(currentLevel) {
         $("#level-title").text("Game Over, Press Any Key to Restart");
         setTimeout(function () {
             $("body").removeClass("game-over");
-        }, 200); 
+        }, 200);
         startOver();
     }
 }
